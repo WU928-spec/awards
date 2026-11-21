@@ -1,0 +1,227 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[margin=26mm,top=23mm,bottom=24mm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}\fancyhf{}\lhead{\small Lacunary dilates}\rhead{\small JSP-000828}\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\newtheorem*{theorem}{Theorem}
+\newcommand{\T}{\mathbb T}
+\newcommand{\E}{\mathbb E}
+\newcommand{\1}{\mathbf 1}
+\newcommand{\card}{\#}
+\begin{document}
+\begin{center}
+{\huge\bfseries The sharp almost-everywhere growth\\[3pt] of sums of lacunary dilates\par}
+\vspace{9pt}
+{\large A self-contained proof for Erd\H{o}s problem 995}\\[4pt]
+21 November 2026
+\end{center}
+
+\section*{1. The answer}
+On the circle $\T=\mathbb R/\mathbb Z$ with Lebesgue probability measure $\mu$, write
+\[
+ S_N(f,x)=\sum_{k=1}^N f(n_kx).
+\]
+The integers $n_k$ are positive. A sequence is lacunary if
+$n_{k+1}/n_k\ge q$ for some $q>1$ and every $k$. For every such sequence and
+every $f\in L^2(\T)$,
+\[
+                    S_N(f,x)=o\!\left(N\sqrt{\log N}\right)
+                    \quad\text{for almost every }x.                 \tag{1}
+\]
+For each positive sequence $M_N=o(N\sqrt{\log N})$, there exist a lacunary
+sequence and a real, mean-zero $f\in L^2(\T)$ such that
+\[
+            \limsup_{N\to\infty}\frac{S_N(f,x)}{M_N}=+\infty
+                    \quad\text{for almost every }x.                 \tag{2}
+\]
+Thus the proposed $o(N\sqrt{\log\log N})$ bound fails, even with mean zero.
+The example may depend on the proposed normalizer. The exceptional null set
+in (1) may depend on $f$ and the sequence.
+
+Here is the exact criterion, including normalizers that oscillate.
+For finite $M_N>0$ put
+\[
+ D_j=[2^j,2^{j+1})\cap\mathbb N,\qquad
+ w_j=\max_{N\in D_j}\frac{N}{M_N},\qquad
+ K=\sup_{u>0}u\sqrt{\card\{j\ge0:w_j>u\}}.
+\]
+\begin{theorem}
+If $K<\infty$, then $S_N(|f|,x)/M_N\to0$ almost everywhere for every
+$f\in L^2(\T)$ and every sequence of positive integers. If $K=\infty$,
+then (2) holds for a mean-zero $f\in L^2(\T)$ and a sequence of
+powers of two with successive ratios at least two.
+\end{theorem}
+
+\paragraph{Relation to earlier work.}
+The sharp scale follows from the general results of Quas and Wierdl
+\cite{QW}. Their Theorem 2.3 applies to averages of measure-preserving
+maps; their Theorem B(2) gives sharpness for iterates of the doubling map.
+Their weak sequence norm leads to the criterion above. Ho's separate
+construction \cite{Ho} disproves the proposed bound and gives estimates
+up to an arbitrarily small logarithmic exponent. We give direct proofs of
+both implications for circle dilates, including an elementary construction
+of all the required counterexamples.
+
+\newpage
+\section*{2. The universal upper estimate}
+For nonnegative $g$ put
+\[
+ B_jg(x)=2^{-j-1}\sum_{k=1}^{2^{j+1}}g(n_kx).
+\]
+The map $x\mapsto nx\bmod 1$ preserves $\mu$ for every positive integer $n$,
+as seen by splitting $[0,1)$ into $n$ intervals of length $1/n$.
+Consequently $B_j$ preserves constants and integrals. For $N\in D_j$,
+positivity and $2^{j+1}/N\le 2$ give
+\[
+                  \frac{S_N(|f|,x)}{M_N}\le2w_jB_j|f|(x).             \tag{3}
+\]
+Fix $u>0$. With $h=|f|$, the part of $h$ at most $u/(2w_j)$ contributes
+at most $u/2$ to $w_j B_jh$. Markov's inequality on the remaining part
+therefore yields
+\[
+       \mu\{w_jB_jh>u\}\le\frac{2w_j}{u}
+                    \int_{\{h>u/(2w_j)\}}h\,d\mu.                    \tag{4}
+\]
+When $K<\infty$, the number of $j$ with $w_j>s$ is at most $K^2/s^2$.
+Integrating this counting bound gives, for $a>0$,
+\[
+ \sum_{j:w_j>a} w_j
+ =a\card\{j:w_j>a\}+\int_a^\infty\card\{j:w_j>s\}\,ds
+ \le\frac{2K^2}{a}.
+\]
+Summing (4), interchanging the nonnegative sum and integral, and
+substituting $a=u/(2h(x))$ where $h(x)>0$, we obtain
+\[
+             \sum_j\mu\{w_jB_jh>u\}\le \frac{8K^2}{u^2}\int h^2\,d\mu .
+\]
+The first Borel--Cantelli lemma, applied to $u=1,1/2,1/3,\ldots$,
+gives $w_jB_jh\to0$ almost everywhere. Estimate (3) proves convergence
+along all $N$. Replacing an $L^2$ representative on a null set changes
+its dilates only on a countable union of null sets.
+
+\paragraph{How the criterion gives the endpoint.}
+For $M_N=N\sqrt{1+\log N}$ we have $w_j=(1+j\log2)^{-1/2}$ and $K<\infty$.
+Conversely, if $M_N=o(N\sqrt{\log N})$, evaluation at $N=2^j$ gives
+$w_j\sqrt j\to\infty$. For every $A>0$ and all sufficiently large $J$,
+the $J$ indices in $[J,2J)$ then have $w_j>A/\sqrt{2J}$. Hence
+$K\ge A/\sqrt2$ for every $A$. It remains to prove (2) when $K=\infty$.
+
+\newpage
+\section*{3. Constructing the counterexample}
+Ignore the null set of ambiguous binary expansions. The binary digits
+$\xi_1(x),\xi_2(x),\ldots$ of a uniformly distributed $x$ are independent
+fair bits: any prescribed string of $s$ initial bits has measure $2^{-s}$.
+Multiplication by $2^d$ shifts these digits to the left by $d$ places.
+
+\paragraph{Choice of sample indices.}
+Let $v_j=\min(w_j,1)$. Its weak $\ell^2$ norm is still infinite: truncation
+either changes finitely many terms or leaves infinitely many terms equal
+to one. Removing any finite initial segment preserves this property.
+At stage $m\ge1$, choose $0<\alpha<1$ and a finite set of $H$ indices
+$j$ of one parity, beyond all previous indices by at least two, such that
+\[
+                v_j>\alpha,\qquad \alpha\sqrt H\ \ge\ 2^{m+4}m.       \tag{5}
+\]
+This is possible by the definition of the weak norm, retaining the more
+frequent parity. For each chosen $j$ take a maximizer $N\in D_j$ of
+$N/M_N$. In the increasing list of selected $N$, including earlier
+stages, each new $N$ is more than twice its predecessor. The sets of
+sample indices
+\[
+                     I_N=\{\lfloor N/2\rfloor+1,\ldots,N\}
+\]
+are therefore disjoint and satisfy $|I_N|\ge N/2$.
+
+\paragraph{A rare event with many opportunities.}
+Within this stage choose an integer $L\ge 2\max N$. Put $r=\lceil\log_2(LH)\rceil$,
+so that $1/(2H)<L2^{-r}\le 1/H$. Let $E_m$ be the set where the
+word $1\,0^{r-1}$ starts at one of the digit positions $1,\ldots,L$.
+The union bound gives $\mu(E_m)\le 1/H$. Set
+\[
+                         g_m=(8m/\alpha)\1_{E_m}.
+\]
+Equation (5) implies $\|g_m\|_2\le 2^{-m}$.
+
+Assign strictly increasing nonnegative integer exponents $a_k$ in index
+order. On each $I_N$ assign consecutive exponents $d,\ldots,d+s-1$,
+where $s=|I_N|$. Choose the initial $d$ large enough that its digit
+interval $[d+1,d+L+r]$ is disjoint from and to the right of every
+such interval previously assigned. The finitely many intervening sample
+indices can be assigned consecutive exponents first, so there is no
+obstruction. The stage maxima grow without bound, which assigns every $k$.
+
+If the word starts anywhere from position $d+s$ to $d+L$, then
+$2^{a_k}x\in E_m$ for every $k\in I_N$: subtracting any such $a_k$
+puts the start in $[1,L]$. Call this event $C_N$. There are
+$h=L-s+1\ge L/2$ possible starts. Put $\lambda=h2^{-r}$, so
+$1/(4H)<\lambda\le 1/H$. Two distinct starts less than $r$ apart are
+incompatible because the word starts with one and all its other bits
+are zero. Starts at least $r$ apart use disjoint digits. The two-term
+inclusion--exclusion bound now gives
+\[
+               \mu(C_N)\ge h2^{-r}-\tbinom h2 2^{-2r}
+                          \ge\lambda-\lambda^2/2\ge 1/(8H).          \tag{6}
+\]
+
+\newpage
+\section*{4. From the digit events to divergence}
+All the $C_N$ are independent because the digit intervals used for
+different selected $N$ are disjoint, including across stages. Thus
+the chance of at least one $C_N$ in stage $m$ is at least
+\[
+              1-(1-1/(8H))^H\ge 1-e^{-1/8}.
+\]
+These stage events are themselves independent. The second
+Borel--Cantelli lemma implies that infinitely many stages succeed
+for almost every $x$.
+
+Set $F=\sum_{m\ge1}g_m$. The summands are nonnegative and their
+$L^2$ norms are summable. By the triangle inequality on partial sums
+and monotone convergence of their squares, $F\in L^2$ and is finite
+almost everywhere. Write $b=\int F\,d\mu$ and put $f=F-b$,
+choosing any finite representative on the exceptional null set.
+Discard also its countably many null preimages under the selected
+dilations. On a successful stage, choose $N$ with $C_N$. For this $N$,
+the sample sequence $n_k=2^{a_k}$ satisfies
+\[
+ \frac{S_N(F,x)}{N}\ \ge\ \frac{|I_N|}{N}\frac{8m}{\alpha}
+                  \ \ge\ \frac{4m}{\alpha}.
+\]
+Since $\alpha<1$, for $m>b$ it follows that
+\[
+ \frac{S_N(f,x)}{M_N}
+   =\frac{N}{M_N}\left(\frac{S_N(F,x)}{N}-b\right)
+   \ge\alpha\left(\frac{4m}{\alpha}-b\right)\ge 3m .
+\]
+This proves (2). Strict increase of the integer exponents gives
+$n_{k+1}/n_k\ge2$. Taking $M_N=N\sqrt{\log\log N}$ for all sufficiently
+large $N$ supplies the counterexample in the problem.
+
+\paragraph{A fixed sequence from the literature.}
+For a shorter route to sharpness against every strictly smaller order,
+use Theorem B(2) of \cite{QW} with $p=2$, $T(x)=2x\bmod1$ and
+iterate times $2^k$. The map is measure-preserving and aperiodic:
+for each $a\ge1$ its points of period dividing $a$ satisfy
+$(2^a-1)x=0\bmod1$, a finite set. Thus the \emph{integer dilates}
+in this application are $2^{2^k}$. For a centered example and a tiny
+$M_N$, apply the theorem to $\max(M_N,N)$ and take the absolute value
+of its witness before centering. The normalized uncentered limsup is
+infinite, and the cost of centering at that larger denominator is bounded.
+
+\begin{thebibliography}{3}\small
+\bibitem{E} P. Erd\H{o}s, \emph{Problems and results on diophantine approximations},
+Compositio Math. 16 (1964), 52--65, especially p.~58.
+\href{https://www.numdam.org/item/CM_1964__16__52_0/}{Original article}.
+\href{https://www.erdosproblems.com/995}{Modern problem statement}.
+\bibitem{QW} A. Quas and M. Wierdl, \emph{Rates of divergence of non-conventional
+ergodic averages}, Ergodic Theory Dynam. Systems 30 (2010), 233--262.
+\href{https://doi.org/10.1017/S0143385709000054}{Publisher}.
+\href{https://arxiv.org/pdf/math/0409001}{Preprint}, Thm.~B, Thms.~2.3--2.4 and 6.2.
+\bibitem{Ho} B. S. Ho, \emph{Counterexamples for lacunary dilates via dyadic
+spike blocks}, \href{https://arxiv.org/html/2604.18535v3}{arXiv:2604.18535v3}
+(23 October 2026), finite-$L^p$ growth in Sections 6 and 8.
+\end{thebibliography}
+\end{document}
